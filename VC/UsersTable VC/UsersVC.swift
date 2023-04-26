@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UsersVC: UIViewController {
+class UsersVC: UITableViewController {
 
     //MARK: Объекты для теста таблицы
     var user1 = User(id: 1, name: "User1", username: "UserName1", email: "user1@mail.com",
@@ -27,7 +27,7 @@ class UsersVC: UIViewController {
     
     
     //MARK: Properies
-    private var tableView: UITableView! = nil
+   // private var tableView: UITableView! = nil
     
     
     //MARK: - View Life Circle
@@ -40,39 +40,27 @@ class UsersVC: UIViewController {
     //MARK: - SetupUI
     private func setupUI() {
         configureTableView()
+        tableView.register(UserCell.self, forCellReuseIdentifier: UserCell.id)
     }
     
     private func configureTableView() {
-        tableView = UITableView()
-        self.view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    
         
-        tableView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        tableView.delegate = self
-        tableView.dataSource = self
         
-        tableView.register(UserCell.self, forCellReuseIdentifier: UserCell.id)
-        
-        let guide = view.layoutMarginsGuide
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: guide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
-        ])
+       
     }
     
 }
 
 //MARK: - TableView DataSource, Delegate
-extension UsersVC: UITableViewDataSource, UITableViewDelegate {
+extension UsersVC  {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = users[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.id, for: indexPath) as! UserCell
@@ -82,7 +70,7 @@ extension UsersVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(UserVC(user: users[indexPath.row]), animated: true)
     }
     
