@@ -96,6 +96,7 @@ class UserVC: UIViewController {
     @objc
     private func goToToDoVC() {
         print("Go To Todo")
+        navigationController?.pushViewController(ToDoTableVC(), animated: true)
     }
     
     @objc
