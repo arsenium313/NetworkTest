@@ -83,7 +83,7 @@ extension UsersVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(UserVC(), animated: true)
+        navigationController?.pushViewController(UserVC(user: users[indexPath.row]), animated: true)
     }
     
     
