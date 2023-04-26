@@ -102,5 +102,6 @@ class UserVC: UIViewController {
     @objc
     private func goToPost() {
         print("Go To Post")
+        navigationController?.pushViewController(PostTableVC(), animated: true)
     }
 }
