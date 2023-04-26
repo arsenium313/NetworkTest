@@ -10,6 +10,8 @@ import UIKit
 extension UIButton {
     class func createButton(title: String, color: UIColor, action: Selector) -> UIButton {
         let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .filled()
         button.configuration?.title = title
         button.configuration?.baseBackgroundColor = color
         button.configuration?.cornerStyle = .medium
