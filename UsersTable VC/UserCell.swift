@@ -31,7 +31,7 @@ class UserCell: UITableViewCell {
     
     //MARK: - SetupUI
     func setupUI(){
-        contentView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         configureNameLabel()
         configureEmailLabel()
     }
