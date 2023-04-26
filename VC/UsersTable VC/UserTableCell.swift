@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class UserTableCell: UITableViewCell {
 
     //MARK: Properties
     static let id = "UserCellIdentifier"
@@ -29,35 +29,51 @@ class UserCell: UITableViewCell {
     
     private lazy var guide = contentView.layoutMarginsGuide
     
+    
     //MARK: - SetupUI
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 5, bottom: 0, right: 5))
+    }
+    
     func setupUI(){
-        contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        configureSelf()
         configureNameLabel()
         configureEmailLabel()
     }
     
+    private func configureSelf() {
+        contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        self.selectionStyle = .none
+    }
+    
     private func configureNameLabel() {
         nameLabel = UILabel()
-        nameLabel.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            nameLabel.topAnchor.constraint(equalTo: guide.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
             nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45)
         ])
     }
     
     private func configureEmailLabel() {
         emailLabel = UILabel()
-        emailLabel.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         contentView.addSubview(emailLabel)
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             emailLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 5),
-            emailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            emailLabel.topAnchor.constraint(equalTo: guide.topAnchor),
+            emailLabel.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
             emailLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor)
         ])
     }

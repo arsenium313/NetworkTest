@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ToDo {
+class Todo {
     
     //MARK: Properties
     var userId: Int

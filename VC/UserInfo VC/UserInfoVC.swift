@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserVC: UIViewController {
+class UserInfoVC: UIViewController {
 
     //MARK: Properties
     private var buttonsStackView: UIStackView! = nil
@@ -35,15 +35,21 @@ class UserVC: UIViewController {
     //MARK: - View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         setupUI()
     }
     
     //MARK: - SetupUI
     private func setupUI() {
+        configureSelf()
         configureButtonsStackView()
         configureUserInfoTextView()
     }
+    
+    private func configureSelf() {
+        self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationItem.title = "UserInfo"
+    }
+    
     
     private func configureButtonsStackView() {
         let arrangedButtons = [albumButton, todoButton, postButton]
@@ -77,14 +83,16 @@ class UserVC: UIViewController {
             userInfoTextView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
         ])
         
-        userInfoTextView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        userInfoTextView.text = user.createText()
-
+        userInfoTextView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         userInfoTextView.isEditable = false
         userInfoTextView.font = UIFont.systemFont(ofSize: 25)
+        userInfoTextView.layer.cornerRadius = 10
+        userInfoTextView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        userInfoTextView.layer.borderWidth = 2
         
+        userInfoTextView.text = user.createText()
+
     }
-    
     
     
     //MARK: - @objc
@@ -95,13 +103,11 @@ class UserVC: UIViewController {
 
     @objc
     private func goToToDoVC() {
-        print("Go To Todo")
-        navigationController?.pushViewController(ToDoTableVC(), animated: true)
+        navigationController?.pushViewController(TodoTableVC(), animated: true)
     }
     
     @objc
     private func goToPost() {
-        print("Go To Post")
         navigationController?.pushViewController(PostTableVC(), animated: true)
     }
 }

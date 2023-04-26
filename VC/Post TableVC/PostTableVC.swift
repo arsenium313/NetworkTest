@@ -25,9 +25,21 @@ class PostTableVC: UITableViewController {
     //MARK: - View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(PostTableCell.self, forCellReuseIdentifier: PostTableCell.identifier)
+        setupUI()
     }
 
+    
+    //MARK: - SetupUI
+    private func setupUI() {
+        configureSelf()
+    }
+    
+    private func configureSelf() {
+        tableView.register(PostTableCell.self, forCellReuseIdentifier: PostTableCell.identifier)
+        navigationItem.title = "Posts"
+    }
+    
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
